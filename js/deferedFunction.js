@@ -1,6 +1,6 @@
 /**
-* Deferes a function call. The function can only be caled once in a defined timespan.
-* After the defined timespan the last call will be executed.
+* Defers a function call. The function can only be called once in a defined time span.
+* After the defined time span the last call will be executed.
 * Works with parameters and context bindings
 */
 (function(Function){
@@ -21,4 +21,4 @@
 			},delay);
 		};
 	};
-})(window.Function)
+})(window.Function);

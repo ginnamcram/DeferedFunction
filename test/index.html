@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>defered function tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="../bower_components/web-component-tester/browser.js"></script>
+  <script src="../js/deferedFunction.js"></script>
+</head>
+<body>
+  <script>
+  (function(){
+    'use strict';
+    
+    test('muli call a function', function(done) {
+      var counter = 0;
+
+      var func = function(arg1){
+        counter++;
+
+        assert.equal(counter,1);
+        assert.equal('number 5 lives',arg1);
+        done();
+      }.defer(1000);
+
+      func('number 1 lives');
+      func('number 2 lives');
+      func('number 3 lives');
+      func('number 4 lives');
+      func('number 5 lives');
+
+    });
+
+    test('muli call a function with context', function(done) {
+      var counter = 0;
+
+      var context = {
+        name: 'test',
+        func: function(arg1){
+          counter++;
+
+          assert.equal(counter,1);
+          assert.equal('number 5 lives',arg1);
+          assert.equal('test',this.name);
+          done();
+        }.defer(1000)
+      } 
+
+      context.func('number 1 lives');
+      context.func('number 2 lives');
+      context.func('number 3 lives');
+      context.func('number 4 lives');
+      context.func('number 5 lives');
+      
+    });
+
+    
+    
+  })();
+  </script>
+</body>
+</html>
